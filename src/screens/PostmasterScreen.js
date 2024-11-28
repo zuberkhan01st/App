@@ -9,7 +9,7 @@ export default function PostmasterScreen({ navigation }) {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const response = await fetch('http://192.168.39.245:5000/api/alerts/');
+        const response = await fetch('https://app-backend-j6s6.onrender.com/api/alerts/');
         const data = await response.json();
         setAlerts(data); // Set the fetched alerts to state
       } catch (error) {
@@ -23,7 +23,7 @@ export default function PostmasterScreen({ navigation }) {
   // Handle the resolve action for the alert
   const resolveAlert = async (alertId) => {
     try {
-      const response = await fetch(`http://192.168.39.245:5000/api/alerts/resolve/${alertId}`, {
+      const response = await fetch(`https://app-backend-j6s6.onrender.com/api/alerts/resolve/${alertId}`, {
         method: 'PUT', // Use PUT to resolve the alert
         headers: {
           'Content-Type': 'application/json',

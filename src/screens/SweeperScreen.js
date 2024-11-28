@@ -13,7 +13,7 @@ const SweeperScreen = ({ navigation }) => {
   // Fetch all active alerts
   const fetchAlerts = async () => {
     try {
-      const response = await fetch(`http://192.168.39.245:5000/api/alerts/`);
+      const response = await fetch(`https://app-backend-j6s6.onrender.com/api/alerts/`);
       const data = await response.json();
       // Sort the alerts by creation date in ascending order (oldest first)
       const sortedAlerts = data.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
@@ -39,7 +39,7 @@ const SweeperScreen = ({ navigation }) => {
     };
 
     try {
-      const response = await fetch('http://192.168.39.245:5000/api/alerts/create', {
+      const response = await fetch('https://app-backend-j6s6.onrender.com/api/alerts/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

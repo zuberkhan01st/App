@@ -15,29 +15,34 @@ const LoginScreen = ({ route, navigation }) => {
     }
 
     setIsLoading(true);
-
+  
     try {
-      const response = await fetch('http://192.168.39.245:5000/api/auth/login', {
+      const response = await fetch('https://app-backend-j6s6.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
+      console.log('Response Status:', response.status); // Check the response status
+  
+      if (!response.ok) {
+        throw new Error('Failed to log in');
+      }
+  
       const data = await response.json();
-
-      if (response.ok) {
+      console.log('Response Data:', data); // Log the response data
+  
+      if (data.message === "Login successful!") {
         Alert.alert('Success', 'Login successful!');
         console.log('Token:', data.token);
-        if(userType=="Admin"){
+  
+        if (userType === "Admin") {
           navigation.navigate('AdminScreen');
-        }
-        // Navigate to AdminScreen for now (update as needed)
-        else if(userType=="CleaningAssistant"){
+        } else if (userType === "CleaningAssistant") {
           navigation.navigate('SweeperScreen');
-        }
-        else{
+        } else {
           navigation.navigate('PostmasterScreen');
         }
       } else {
@@ -50,6 +55,8 @@ const LoginScreen = ({ route, navigation }) => {
       setIsLoading(false);
     }
   };
+  
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

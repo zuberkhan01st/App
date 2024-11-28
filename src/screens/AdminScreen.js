@@ -8,7 +8,7 @@ export default function AdminScreen({ navigation }) {
   // Function to fetch active alerts (reports)
   const fetchReports = async () => {
     try {
-      const response = await fetch('http://192.168.39.245:5000/api/alerts');
+      const response = await fetch('https://app-backend-j6s6.onrender.com/api/alerts');
       const data = await response.json();
       if (response.ok) {
         setReports(data);  // Store the fetched reports
